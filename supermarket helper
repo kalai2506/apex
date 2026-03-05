@@ -1,3 +1,20 @@
+Create a class Product to store product information:
+Code,Name,Price,Stock,Discount
+
+Create another class called SuperMarket.
+
+Use a List of Product class to store information for at least 3 products.
+
+Create a Billing Function that calculates the total amount when a customer buys a product based on quantity and applies the discount.
+
+Create a Reorder Function to add stock when the product quantity becomes low.
+
+Create a Stock Display Function to display all available products and their stock details
+
+
+
+
+
 public class productmain {
 
    public string productCode;
