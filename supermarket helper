@@ -1,0 +1,74 @@
+public class productmain {
+
+   public string productCode;
+    public string productName;
+   public integer productPrice;
+   public integer productStock;
+        public decimal discount;
+    public productmain(string productCode,string productName,integer productPrice,integer productStock,decimal discount)
+    {
+        this.productCode=productCode ;
+    this.productName=productName ;
+    this.productPrice=productPrice ;
+    this.productStock=productStock ;
+        this.discount =discount ;
+    }
+        
+}
+public class supermarkethelper {
+
+    public static map<string ,list<productmain>>supermarketMap = new map<string ,list<productmain>>();
+    
+    public void addproducts(productmain newProd)
+    {
+        supermarketMap.put(newProd.productCode,new list<productmain>{newProd});
+        
+    }
+    //for clarity
+    public void displayproducts()
+    {
+     for(list<productmain> pd : supermarketMap.values())  
+     {
+         system.debug(pd);
+     }
+    }
+    public void billing(string purchasedProcode , integer quantity)
+        
+    {
+        
+        
+        list<productmain> reqProduct;
+        if(supermarketMap.containsKey(purchasedProcode))
+        { 
+            reqProduct=supermarketMap.get(purchasedProcode);
+            for(productmain p :reqProduct ){
+                if(p.productStock>=quantity){
+                    p.productStock= p.productStock-quantity;
+                }
+            }
+                
+        }
+        else{
+            system.debug('prod not available');
+        }
+         }
+    public void reorderstock(integer chckquantity , integer reOrerQuantity)
+    {
+        for(list<productmain> prodlist :supermarketMap.values() ){
+            for(productmain p : prodlist){
+                if(p.productStock < chckquantity){
+                   p.productStock = p.productStock+reOrerQuantity;
+                }
+            }
+        }
+    }
+    public void displayStock()
+    {
+        for(list<productmain> pp :supermarketMap.values() ){
+            for(productmain singlepro : pp){
+                system.debug(singlepro.productName);
+                system.debug(singlepro.productStock);
+            }
+        }
+    }
+    }
